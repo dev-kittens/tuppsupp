@@ -21,13 +21,17 @@ class TuppSuppBot extends Eris.Client {
 
         this.rules = require("./rules.json");
         
-        this.db = require("./db");
-        this.db.init();
-        
+        if (process.env.db_string) {
+		this.db = require("./db");
+        	this.db.init();
+	}
+
         require("./utils")(this);
 
         this.load("events");
         this.load("commands");
+	    
+	if (!process.env.db_string) delete bot.commands.tag;
 
         Object.keys(this.events).forEach(event => {
             this.on(event, (...args) => this.events[event](...args, this));
