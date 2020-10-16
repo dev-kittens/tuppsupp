@@ -8,7 +8,7 @@ module.exports = {
 
         let out;
         try {
-            out = await eval(msg.content.slice(14).trim());
+            out = await eval(args.join().trim());
         } catch(e) { out = e.toString(); }
         return util.inspect(out).slice(0,2000);
     }

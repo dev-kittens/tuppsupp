@@ -13,7 +13,7 @@ module.exports = async (msg, bot) => {
     if (!cmd) return;
     
     if (!msg.member || msg.member.guild.id != process.env.guild || !msg.member.roles.includes(process.env.role))
-    return bot.addMessageReaction(msg.channel.id, msg.id, "\u274c");
+      return bot.addMessageReaction(msg.channel.id, msg.id, "\u274c");
 
     try { 
         await bot.createMessage(msg.channel.id, await cmd.execute(bot, msg, args)); 
